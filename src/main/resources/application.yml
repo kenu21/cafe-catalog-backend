@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: cafes
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:}
+    username: ${MYSQL_USER:}
+    password: ${MYSQL_PASSWORD:}

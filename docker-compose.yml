@@ -1,0 +1,31 @@
+services:
+  db:
+    extends:
+      file: /home/yurii/VSC_Projects/cafe-catalog-data/docker-compose.yml
+      service: db
+
+  flyway:
+    extends:
+      file: /home/yurii/VSC_Projects/cafe-catalog-data/docker-compose.yml
+      service: flyway
+
+  backend:
+    build: .
+    container_name: backend
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      MYSQL_HOST: db
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "8080:8080"
+    networks:
+      - cafenet
+    depends_on:
+      - flyway
+
+networks:
+  cafenet:
+    name: cafenet
