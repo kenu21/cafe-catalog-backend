@@ -1,4 +1,4 @@
-FROM maven:3.9.11-amazoncorretto-21-al2023 AS build
+FROM maven:3.9.11-amazoncorretto-21-alpine AS build
 WORKDIR /app
 
 COPY pom.xml .
@@ -8,7 +8,7 @@ RUN mvn dependency:go-offline -B
 COPY src ./src
 RUN mvn clean package -DskipTests
 
-FROM eclipse-temurin:21-jre
+FROM eclipse-temurin:21.0.9_10-jre-alpine-3.22
 WORKDIR /app
 
 COPY --from=build /app/target/*.jar app.jar
