@@ -1,0 +1,33 @@
+services:
+  db:
+    extends:
+      file: ${COMPOSE_EXTENDS_PATH}
+      service: db
+
+  flyway:
+    extends:
+      file: ${COMPOSE_EXTENDS_PATH}
+      service: flyway
+
+  backend:
+    build: .
+    image: image-back-cafe
+    container_name: container-back-cafe
+    restart: on-failure:10
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      MYSQL_HOST: db
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "${BACKEND_LOCAL_PORT}:${BACKEND_CONTAINER_PORT}"
+    networks:
+      - cafenet
+    depends_on:
+      - flyway
+
+networks:
+  cafenet:
+    name: cafenet
