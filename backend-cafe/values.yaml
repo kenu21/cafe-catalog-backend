@@ -1,0 +1,7 @@
+namespaceName: back-ns
+
+backCafe:
+  user:
+  password:
+  mysqlDatabaseUrl: jdbc:mysql://db:3306/coffee_shop?allowPublicKeyRetrieval=true&useSSL=false
+  containerPort: 80
