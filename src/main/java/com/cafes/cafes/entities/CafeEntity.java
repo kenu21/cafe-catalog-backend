@@ -2,6 +2,7 @@ package com.cafes.cafes.entities;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -33,6 +34,14 @@ public class CafeEntity {
     @OneToOne
     @JoinColumn(name = "address_id", nullable = false)
     private AddressEntity addressEntity;
+
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
 
     @ManyToMany
     @JoinTable(
