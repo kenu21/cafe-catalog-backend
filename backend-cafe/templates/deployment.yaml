@@ -22,15 +22,15 @@ spec:
                     operator: In
                     values:
                       - back
-    containers:
-      - name: back-container
-        image: kenu21/image-back-cafe:1.0.0
-        ports:
-          - containerPort: {{ .Values.backCafe.containerPort }}
-        env:
-          - name: MYSQL_USER
-            value: {{ .Values.backCafe.rootPassword }}
-          - name: MYSQL_PASSWORD
-            value: {{ .Values.backCafe.rootPassword }}
-          - name: MYSQL_DATABASE_URL
-            value: {{ .Values.backCafe.mysqlDatabaseUrl }}
+      containers:
+        - name: back-container
+          image: kenu21/image-back-cafe:1.0.0
+          ports:
+            - containerPort: {{ .Values.backCafe.containerPort }}
+          env:
+            - name: MYSQL_USER
+              value: {{ .Values.backCafe.rootPassword }}
+            - name: MYSQL_PASSWORD
+              value: {{ .Values.backCafe.rootPassword }}
+            - name: MYSQL_DATABASE_URL
+              value: {{ .Values.backCafe.mysqlDatabaseUrl }}
