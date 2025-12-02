@@ -1,4 +1,4 @@
-name: Deploy MySQL with Flyway
+name: Deploy backend
 
 on:
   push:
