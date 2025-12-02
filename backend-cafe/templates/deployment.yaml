@@ -12,17 +12,16 @@ spec:
     metadata:
       labels:
         app: back-cafe
-      spec:
-        affinity:
-          nodeAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              nodeSelectorTerms:
-                - matchExpressions:
-                    - key: role
-                      operator: In
-                      values:
-                        - back
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: role
+                    operator: In
+                    values:
+                      - back
       containers:
         - name: back-container
           image: kenu21/image-back-cafe:1.0.0
