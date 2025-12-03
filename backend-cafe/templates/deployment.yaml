@@ -24,13 +24,13 @@ spec:
                       - back
       containers:
         - name: back-container
-          image: kenu21/image-back-cafe:1.0.0
+          image: "{{ .Values.backCafe.image.repository }}:{{ .Values.backCafe.image.tag }}"
           ports:
             - containerPort: {{ .Values.backCafe.containerPort }}
           env:
             - name: MYSQL_USER
-              value: {{ .Values.backCafe.rootPassword }}
+              value: {{ .Values.backCafe.user }}
             - name: MYSQL_PASSWORD
-              value: {{ .Values.backCafe.rootPassword }}
+              value: {{ .Values.backCafe.password }}
             - name: MYSQL_DATABASE_URL
               value: {{ .Values.backCafe.mysqlDatabaseUrl }}
