@@ -11,13 +11,11 @@ services:
 
   backend:
     build: .
-    image: image-back-cafe
+    image: image-back-cafe:latest
     container_name: container-back-cafe
     restart: on-failure:10
     environment:
-      MYSQL_HOST: db
-      MYSQL_PORT: 3306
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_DATABASE_URL: ${MYSQL_DATABASE_URL}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
