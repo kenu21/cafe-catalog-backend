@@ -5,3 +5,6 @@ backCafe:
   password:
   mysqlDatabaseUrl: jdbc:mysql://mysql-ns.cafee-mysql:3306/coffee_shop?allowPublicKeyRetrieval=true&useSSL=false
   containerPort: 80
+  image:
+    repository: kenu21/image-back-cafe
+    tag:
