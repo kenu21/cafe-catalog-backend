@@ -3,7 +3,7 @@ namespaceName: back-ns
 backCafe:
   user:
   password:
-  mysqlDatabaseUrl: jdbc:mysql://cafee-mysql.mysql-ns.svc.cluster.local:3306/coffee_shop?allowPublicKeyRetrieval=true&useSSL=false
+  mysqlDatabaseUrl: jdbc:mysql://mysql-cafe.mysql-ns.svc.cluster.local:3306/coffee_shop?allowPublicKeyRetrieval=true&useSSL=false
   containerPort: 80
   image:
     repository: kenu21/image-back-cafe
