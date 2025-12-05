@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: cafe-back
+  name: {{ .Values.backCafe.name }}
   namespace: {{ .Values.namespaceName }}
 spec:
   selector:
-    app: back-cafe
+    app: {{ .Values.backCafe.label }}
   ports:
-    - protocol: TCP
+    - protocol: {{ .Values.backCafe.protocol }}
       port: {{ .Values.backCafe.containerPort }}
       targetPort: {{ .Values.backCafe.containerPort }}
   type: ClusterIP

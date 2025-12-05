@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cafe-back-deployment
+  name: back-cafe-deployment
   namespace: {{ .Values.namespaceName }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.backCafe.replicas }}
   selector:
     matchLabels:
-      app: back-cafe
+      app: {{ .Values.backCafe.label }}
   template:
     metadata:
       labels:
-        app: back-cafe
+        app: {{ .Values.backCafe.label }}
     spec:
       affinity:
         nodeAffinity:
@@ -23,14 +23,16 @@ spec:
                     values:
                       - back
       containers:
-        - name: back-container
-          image: "{{ .Values.backCafe.image.repository }}:{{ .Values.backCafe.image.tag }}"
+        - name: {{ .Values.backCafe.containers.name }}
+          image: "{{ .Values.backCafe.containers.image.repository }}:{{ .Values.containers.backCafe.image.tag }}"
           ports:
-            - containerPort: {{ .Values.backCafe.containerPort }}
+            - containerPort: {{ .Values.backCafe.containers.containerPort }}
           env:
-            - name: MYSQL_USER
-              value: {{ .Values.backCafe.user }}
-            - name: MYSQL_PASSWORD
-              value: {{ .Values.backCafe.password }}
             - name: MYSQL_DATABASE_URL
-              value: {{ .Values.backCafe.mysqlDatabaseUrl }}
+            - value: { { .Values.backCafe.containers.mysqlDatabaseUrl } }
+            - name: MYSQL_USER
+              value: {{ .Values.backCafe.containers.user }}
+            - name: MYSQL_PASSWORD
+              value: {{ .Values.backCafe.containers.password }}
+            - name: BACKEND_CONTAINER_PORT
+              value: {{ .Values.backCafe.containers.containerPort }}}}
