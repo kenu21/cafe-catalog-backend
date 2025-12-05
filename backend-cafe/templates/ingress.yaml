@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cafe-ingress
+  namespace: back-ns
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/service-upstream: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: aa0059100549f4ddba101319275ed534-554976623.us-east-1.elb.amazonaws.com
+      http:
+        paths:
+          - path: /cafe-back(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: cafe-back
+                port:
+                  number: 80
