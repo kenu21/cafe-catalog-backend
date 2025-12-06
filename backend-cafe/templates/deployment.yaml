@@ -29,7 +29,7 @@ spec:
             - containerPort: {{ .Values.backCafe.containers.containerPort }}
           env:
             - name: MYSQL_DATABASE_URL
-            - value: {{ .Values.backCafe.containers.mysqlDatabaseUrl }}
+              value: {{ .Values.backCafe.containers.mysqlDatabaseUrl }}
             - name: MYSQL_USER
               value: {{ .Values.backCafe.containers.user }}
             - name: MYSQL_PASSWORD
