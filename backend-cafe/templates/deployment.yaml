@@ -24,7 +24,7 @@ spec:
                       - back
       containers:
         - name: {{ .Values.backCafe.containers.name }}
-          image: "{{ .Values.backCafe.containers.image.repository }}:{{ .Values.containers.backCafe.image.tag }}"
+          image: "{{ .Values.backCafe.containers.image.repository }}:{{ .Values.backCafe.containers.image.tag }}"
           ports:
             - containerPort: {{ .Values.backCafe.containers.containerPort }}
           env:
