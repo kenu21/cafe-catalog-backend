@@ -10,4 +10,4 @@ spring:
 server:
   port: ${BACKEND_CONTAINER_PORT}
   servlet:
-    context-path: /api/v1
+    context-path: ${CONTEXT_PATH}
