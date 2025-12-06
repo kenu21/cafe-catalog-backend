@@ -9,7 +9,7 @@ backCafe:
   containers:
     name: back-cafe-container
     mysqlDatabaseUrl: jdbc:mysql://mysql-cafe.mysql-ns.svc.cluster.local:3306/coffee_shop?allowPublicKeyRetrieval=true&useSSL=false
-    containerPort: 80
+    containerPort: "80"
     user:
     password:
     image:
