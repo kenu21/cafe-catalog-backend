@@ -8,6 +8,6 @@ spec:
     app: {{ .Values.backCafe.label }}
   ports:
     - protocol: {{ .Values.backCafe.protocol }}
-      port: {{ .Values.backCafe.containerPort }}
-      targetPort: {{ .Values.backCafe.containerPort }}
+      port: {{ .Values.backCafe.containers.containerPort }}
+      targetPort: {{ .Values.backCafe.containers.containerPort }}
   type: ClusterIP
