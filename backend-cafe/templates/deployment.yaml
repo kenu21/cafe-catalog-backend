@@ -27,6 +27,15 @@ spec:
           image: "{{ .Values.backCafe.containers.image.repository }}:{{ .Values.backCafe.containers.image.tag }}"
           ports:
             - containerPort: {{ .Values.backCafe.containers.containerPort }}
+          readinessProbe:
+            httpGet:
+              path: "{{ .Values.backCafe.containers.contextPath }}/actuator/health"
+              port: {{ .Values.backCafe.containers.containerPort }}
+            initialDelaySeconds: {{ .Values.backCafe.containers.initialDelaySeconds }}
+            periodSeconds: {{ .Values.backCafe.containers.periodSeconds }}
+            timeoutSeconds: {{ .Values.backCafe.containers.timeoutSeconds }}
+            failureThreshold: {{ .Values.backCafe.containers.failureThreshold }}
+
           env:
             - name: MYSQL_DATABASE_URL
               value: {{ .Values.backCafe.containers.mysqlDatabaseUrl }}
@@ -36,3 +45,5 @@ spec:
               value: {{ .Values.backCafe.containers.password }}
             - name: BACKEND_CONTAINER_PORT
               value: "{{ .Values.backCafe.containers.containerPort }}"
+            - name: CONTEXT_PATH
+              value: {{ .Values.backCafe.containers.contextPath }}
