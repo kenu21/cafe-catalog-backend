@@ -11,8 +11,8 @@ services:
 
   backend:
     build: .
-    image: back-cafe-image:latest
-    container_name: back-cafe-container
+    image: cafe-back-image:latest
+    container_name: cafe-back-container
     restart: "on-failure:10"
     environment:
       MYSQL_DATABASE_URL: ${MYSQL_DATABASE_URL}
@@ -20,6 +20,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       BACKEND_CONTAINER_PORT: ${BACKEND_CONTAINER_PORT}
       FRONTEND_LOCAL_PORT: ${FRONTEND_LOCAL_PORT}
+      CONTEXT_PATH: ${CONTEXT_PATH}
     ports:
       - "${BACKEND_LOCAL_PORT}:${BACKEND_CONTAINER_PORT}"
     networks:

@@ -27,12 +27,12 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t kenu21/image-back-cafe:${{ github.sha }} -t kenu21/image-back-cafe:latest .
+          docker build -t kenu21/cafe-back-image:${{ github.sha }} -t kenu21/cafe-back-image:latest .
 
       - name: Push Docker image
         run: |
-          docker push kenu21/image-back-cafe:${{ github.sha }}
-          docker push kenu21/image-back-cafe:latest
+          docker push kenu21/cafe-back-image:${{ github.sha }}
+          docker push kenu21/cafe-back-image:latest
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
