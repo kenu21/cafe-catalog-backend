@@ -1,6 +1,6 @@
 package com.cafes.cafes.services;
 
-import com.cafes.cafes.CafeDtoResponse;
+import com.cafes.cafes.dto.CafeDtoResponse;
 import com.cafes.cafes.mappers.CafeMapper;
 import com.cafes.cafes.repositories.CafeRepository;
 import org.springframework.beans.factory.annotation.Autowired;

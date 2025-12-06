@@ -1,6 +1,6 @@
 package com.cafes.cafes.controllers;
 
-import com.cafes.cafes.CafeDtoResponse;
+import com.cafes.cafes.dto.CafeDtoResponse;
 import com.cafes.cafes.services.CafeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

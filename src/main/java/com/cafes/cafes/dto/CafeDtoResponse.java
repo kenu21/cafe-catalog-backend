@@ -1,4 +1,4 @@
-package com.cafes.cafes;
+package com.cafes.cafes.dto;
 
 import com.cafes.cafes.entities.AddressEntity;
 

@@ -8,6 +8,6 @@ spring:
     password: ${MYSQL_PASSWORD}
 
 server:
-  port: 80
+  port: ${BACKEND_CONTAINER_PORT}
   servlet:
     context-path: /api/v1
