@@ -35,4 +35,4 @@ spec:
             - name: MYSQL_PASSWORD
               value: {{ .Values.backCafe.containers.password }}
             - name: BACKEND_CONTAINER_PORT
-              value: {{ .Values.backCafe.containers.containerPort }}
+              value: "{{ .Values.backCafe.containers.containerPort }}"
