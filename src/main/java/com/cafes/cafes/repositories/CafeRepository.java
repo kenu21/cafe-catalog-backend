@@ -2,8 +2,10 @@ package com.cafes.cafes.repositories;
 
 import com.cafes.cafes.entities.CafeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CafeRepository extends JpaRepository<CafeEntity, Long> {
+public interface CafeRepository extends JpaRepository<CafeEntity, Long>, JpaSpecificationExecutor<CafeEntity> {
 }
+
