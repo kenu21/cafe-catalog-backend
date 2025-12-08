@@ -1,12 +1,15 @@
 package com.cafes.cafes.controllers;
 
 import com.cafes.cafes.dto.CafeDtoResponse;
+import com.cafes.cafes.entities.CafeEntity;
 import com.cafes.cafes.services.CafeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class CafeController {
@@ -24,5 +27,10 @@ public class CafeController {
             @RequestParam(defaultValue = "20") int size
     ) {
         return cafeService.getCafes(sort, page, size);
+    }
+
+    @GetMapping("/search")
+    public List<CafeDtoResponse> search(@RequestParam String query) {
+        return cafeService.searchCafes(query);
     }
 }
