@@ -1,14 +1,18 @@
 package com.cafes.cafes.services;
 
 import com.cafes.cafes.dto.CafeDtoResponse;
+import com.cafes.cafes.entities.CafeEntity;
 import com.cafes.cafes.mappers.CafeMapper;
 import com.cafes.cafes.repositories.CafeRepository;
+import com.cafes.cafes.specifications.CafeSpecifications;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CafeService {
@@ -31,5 +35,13 @@ public class CafeService {
 
         Pageable pageable = PageRequest.of(page, size, sorting);
         return cafeRepository.findAll(pageable).map(cafeMapper::toDto);
+    }
+
+    public List<CafeDtoResponse> searchCafes(String query) {
+        return cafeRepository
+                .findAll(CafeSpecifications.search(query))
+                .stream()
+                .map(cafeMapper::toDto)
+                .toList();
     }
 }
