@@ -1,7 +1,7 @@
 package com.cafes.cafes.controllers;
 
 import com.cafes.cafes.dto.CafeDtoResponse;
-import com.cafes.cafes.entities.CafeEntity;
+import com.cafes.cafes.dto.CafeWithTagsResponseDto;
 import com.cafes.cafes.services.CafeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -32,5 +33,15 @@ public class CafeController {
     @GetMapping("/search")
     public List<CafeDtoResponse> search(@RequestParam String query) {
         return cafeService.searchCafes(query);
+    }
+
+    @GetMapping("/filter")
+    public List<CafeWithTagsResponseDto> filterCafes(
+            @RequestParam(required = false) Short priceRating,
+            @RequestParam(required = false) String openingHours,
+            @RequestParam(required = false) BigDecimal rating,
+            @RequestParam(required = false) List<String> tags
+    ) {
+        return cafeService.filterCafes(priceRating, openingHours, rating, tags);
     }
 }

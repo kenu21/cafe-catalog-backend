@@ -1,7 +1,12 @@
 package com.cafes.cafes.specifications;
 
 import com.cafes.cafes.entities.CafeEntity;
+import com.cafes.cafes.entities.TagEntity;
+import jakarta.persistence.criteria.*;
 import org.springframework.data.jpa.domain.Specification;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 public class CafeSpecifications {
 
@@ -43,5 +48,33 @@ public class CafeSpecifications {
                 .or(streetContains(text))
                 .or(cityContains(text))
                 .or(buildingNumberContains(text));
+    }
+
+    public static Specification<CafeEntity> filter(
+            Short minPriceRating,
+            String openingHours,
+            BigDecimal minRating,
+            List<String> tags
+    ) {
+        return (Root<CafeEntity> root, CriteriaQuery<?> query, CriteriaBuilder cb) -> {
+            Predicate predicate = cb.conjunction();
+
+            if (minPriceRating != null) {
+                predicate = cb.and(predicate, cb.greaterThanOrEqualTo(root.get("priceRating"), minPriceRating));
+            }
+            if (openingHours != null && !openingHours.isEmpty()) {
+                predicate = cb.and(predicate, cb.like(root.get("openingHours"), "%" + openingHours + "%"));
+            }
+            if (minRating != null) {
+                predicate = cb.and(predicate, cb.greaterThanOrEqualTo(root.get("rating"), minRating));
+            }
+            if (tags != null && !tags.isEmpty()) {
+                Join<CafeEntity, TagEntity> tagsJoin = root.join("tags", JoinType.LEFT);
+                predicate = cb.and(predicate, tagsJoin.get("name").in(tags));
+                query.distinct(true);
+            }
+
+            return predicate;
+        };
     }
 }
