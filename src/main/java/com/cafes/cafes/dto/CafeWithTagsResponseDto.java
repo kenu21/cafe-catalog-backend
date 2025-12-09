@@ -13,7 +13,7 @@ public record CafeWithTagsResponseDto(
         String openingHours,
         BigDecimal rating,
         Integer votesCount,
-        AddressEntity addressEntity,
-        List<TagEntity> tags
+        AddressDtoResponse addressDtoResponse,
+        List<TagDtoResponse> tags
 ) {
 }
