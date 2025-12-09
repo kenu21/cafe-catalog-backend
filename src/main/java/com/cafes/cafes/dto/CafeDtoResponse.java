@@ -11,6 +11,6 @@ public record CafeDtoResponse(
         String openingHours,
         BigDecimal rating,
         Integer votesCount,
-        AddressEntity addressEntity
+        AddressDtoResponse addressDtoResponse
 ) {
 }
