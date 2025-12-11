@@ -51,7 +51,7 @@ public class CafeSpecifications {
     }
 
     public static Specification<CafeEntity> filter(
-            Short minPriceRating,
+            Short priceRating,
             String openingHours,
             BigDecimal minRating,
             List<String> tags
@@ -59,8 +59,8 @@ public class CafeSpecifications {
         return (Root<CafeEntity> root, CriteriaQuery<?> query, CriteriaBuilder cb) -> {
             Predicate predicate = cb.conjunction();
 
-            if (minPriceRating != null) {
-                predicate = cb.and(predicate, cb.greaterThanOrEqualTo(root.get("priceRating"), minPriceRating));
+            if (priceRating != null) {
+                predicate = cb.and(predicate, cb.equal(root.get("priceRating"), priceRating));
             }
             if (openingHours != null && !openingHours.isEmpty()) {
                 predicate = cb.and(predicate, cb.like(root.get("openingHours"), "%" + openingHours + "%"));
