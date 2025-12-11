@@ -2,13 +2,22 @@ package com.cafes.cafes.specifications;
 
 import com.cafes.cafes.entities.CafeEntity;
 import com.cafes.cafes.entities.TagEntity;
+import com.cafes.cafes.services.CafeService;
 import jakarta.persistence.criteria.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.math.BigDecimal;
+import java.time.LocalTime;
 import java.util.List;
 
 public class CafeSpecifications {
+    private final CafeService cafeService;
+
+    @Autowired
+    public CafeSpecifications(CafeService cafeService) {
+        this.cafeService = cafeService;
+    }
 
     public static Specification<CafeEntity> nameContains(String text) {
         return (root, query, criteriaBuilder) ->
@@ -52,7 +61,6 @@ public class CafeSpecifications {
 
     public static Specification<CafeEntity> filter(
             Short priceRating,
-            String openingHours,
             BigDecimal minRating,
             List<String> tags
     ) {
@@ -61,9 +69,6 @@ public class CafeSpecifications {
 
             if (priceRating != null) {
                 predicate = cb.and(predicate, cb.equal(root.get("priceRating"), priceRating));
-            }
-            if (openingHours != null && !openingHours.isEmpty()) {
-                predicate = cb.and(predicate, cb.like(root.get("openingHours"), "%" + openingHours + "%"));
             }
             if (minRating != null) {
                 predicate = cb.and(predicate, cb.greaterThanOrEqualTo(root.get("rating"), minRating));
