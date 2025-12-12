@@ -4,14 +4,11 @@ import ch.poole.openinghoursparser.OpeningHoursParseException;
 import ch.poole.openinghoursparser.OpeningHoursParser;
 import ch.poole.openinghoursparser.Rule;
 import com.cafes.cafes.dto.CafeDtoResponse;
-import com.cafes.cafes.dto.CafeWithTagsResponseDto;
 import com.cafes.cafes.entities.CafeEntity;
 import com.cafes.cafes.mappers.CafeMapper;
 import com.cafes.cafes.repositories.CafeRepository;
 import com.cafes.cafes.specifications.CafeSpecifications;
 import io.leonard.OpeningHoursEvaluator;
-import jdk.jfr.Timespan;
-import org.antlr.v4.runtime.misc.Interval;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -58,7 +55,7 @@ public class CafeService {
                 .toList();
     }
 
-    public List<CafeWithTagsResponseDto> filterCafes(
+    public List<CafeDtoResponse> filterCafes(
             Short priceRating,
             String openingHours,
             BigDecimal rating,
@@ -71,7 +68,7 @@ public class CafeService {
 
         if (openingHours == null || openingHours.isEmpty()) {
             return cafes.stream()
-                    .map(cafeMapper::toWithTagsResponseDto)
+                    .map(cafeMapper::toDto)
                     .toList();
         }
 
@@ -79,7 +76,7 @@ public class CafeService {
         LocalTime reqFrom = LocalTime.parse(parts[0]);
         LocalTime reqTo = LocalTime.parse(parts[1]);
 
-        List<CafeWithTagsResponseDto> result = new ArrayList<>();
+        List<CafeDtoResponse> result = new ArrayList<>();
 
         for (CafeEntity cafeEntity : cafes) {
             String openingHoursDb = cafeEntity.getOpeningHours();
@@ -94,7 +91,7 @@ public class CafeService {
                 boolean isOpenTo = OpeningHoursEvaluator.isOpenAt(checkTo.minusSeconds(1), rules);
 
                 if (isOpenFrom && isOpenTo) {
-                    result.add(cafeMapper.toWithTagsResponseDto(cafeEntity));
+                    result.add(cafeMapper.toDto(cafeEntity));
                 }
             } catch (OpeningHoursParseException e) {
                 throw new RuntimeException(e);

@@ -1,10 +1,9 @@
 package com.cafes.cafes.dto;
 
-import com.cafes.cafes.entities.AddressEntity;
-
 import java.math.BigDecimal;
 
 public record CafeDtoResponse(
+        Long id,
         String name,
         String photoLink,
         Short priceRating,
