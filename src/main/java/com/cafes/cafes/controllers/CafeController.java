@@ -36,7 +36,7 @@ public class CafeController {
     }
 
     @GetMapping("/filter")
-    public List<CafeWithTagsResponseDto> filterCafes(
+    public List<CafeDtoResponse> filterCafes(
             @RequestParam(required = false) Short priceRating,
             @RequestParam(required = false) String openingHours,
             @RequestParam(required = false) BigDecimal rating,
