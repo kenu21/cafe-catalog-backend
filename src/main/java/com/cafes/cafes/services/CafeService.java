@@ -4,6 +4,7 @@ import ch.poole.openinghoursparser.OpeningHoursParseException;
 import ch.poole.openinghoursparser.OpeningHoursParser;
 import ch.poole.openinghoursparser.Rule;
 import com.cafes.cafes.dto.CafeDtoResponse;
+import com.cafes.cafes.dto.CafeWithTagsResponseDto;
 import com.cafes.cafes.entities.CafeEntity;
 import com.cafes.cafes.mappers.CafeMapper;
 import com.cafes.cafes.repositories.CafeRepository;
