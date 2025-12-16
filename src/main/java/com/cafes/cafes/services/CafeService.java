@@ -47,6 +47,13 @@ public class CafeService {
         return cafeRepository.findAll(pageable).map(cafeMapper::toDto);
     }
 
+    public CafeWithTagsResponseDto getCafeById(Long id) {
+        return cafeMapper.toWithTagsResponseDto(cafeRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Cafe with id " + id + " not found")
+                ));
+    }
+
     public List<CafeDtoResponse> searchCafes(String query) {
         return cafeRepository
                 .findAll(CafeSpecifications.search(query))
