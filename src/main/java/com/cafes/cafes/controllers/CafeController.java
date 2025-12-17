@@ -43,7 +43,7 @@ public class CafeController {
 
     @GetMapping("/filter")
     public List<CafeDtoResponse> filterCafes(
-            @RequestParam(required = false) Short priceRating,
+            @RequestParam(required = false) List<Short> priceRating,
             @RequestParam(required = false) String openingHours,
             @RequestParam(required = false) List<BigDecimal> rating,
             @RequestParam(required = false) List<String> tags

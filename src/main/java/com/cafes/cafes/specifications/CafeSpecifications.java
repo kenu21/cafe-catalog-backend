@@ -60,15 +60,15 @@ public class CafeSpecifications {
     }
 
     public static Specification<CafeEntity> filter(
-            Short priceRating,
+            List<Short> priceRating,
             List<BigDecimal> rating,
             List<String> tags
     ) {
         return (Root<CafeEntity> root, CriteriaQuery<?> query, CriteriaBuilder cb) -> {
             Predicate predicate = cb.conjunction();
 
-            if (priceRating != null) {
-                predicate = cb.and(predicate, cb.equal(root.get("priceRating"), priceRating));
+            if (priceRating != null && !priceRating.isEmpty()) {
+                predicate = cb.and(predicate, root.get("priceRating").in(priceRating));
             }
             if (rating != null && !rating.isEmpty()) {
                 predicate = cb.and(predicate, root.get("rating").in(rating));
