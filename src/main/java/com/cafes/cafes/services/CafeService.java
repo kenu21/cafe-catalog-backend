@@ -64,7 +64,7 @@ public class CafeService {
     }
 
     public List<CafeDtoResponse> filterCafes(
-            Short priceRating,
+            List<Short> priceRating,
             String openingHours,
             List<BigDecimal> rating,
             List<String> tags
