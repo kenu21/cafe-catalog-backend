@@ -45,7 +45,7 @@ public class CafeController {
     public List<CafeDtoResponse> filterCafes(
             @RequestParam(required = false) Short priceRating,
             @RequestParam(required = false) String openingHours,
-            @RequestParam(required = false) BigDecimal rating,
+            @RequestParam(required = false) List<BigDecimal> rating,
             @RequestParam(required = false) List<String> tags
     ) {
         return cafeService.filterCafes(priceRating, openingHours, rating, tags);

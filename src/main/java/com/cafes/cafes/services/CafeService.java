@@ -66,7 +66,7 @@ public class CafeService {
     public List<CafeDtoResponse> filterCafes(
             Short priceRating,
             String openingHours,
-            BigDecimal rating,
+            List<BigDecimal> rating,
             List<String> tags
     ) {
         List<CafeEntity> cafes = cafeRepository
