@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public record CafeDtoResponse(
         Long id,
         String name,
-        String photoLink,
+        PhotoDtoResponse mainPhoto,
         Short priceRating,
         String openingHours,
         BigDecimal rating,
