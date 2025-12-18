@@ -1,7 +1,7 @@
 package com.cafes.cafes.controllers;
 
 import com.cafes.cafes.dto.CafeDtoResponse;
-import com.cafes.cafes.dto.CafeWithTagsResponseDto;
+import com.cafes.cafes.dto.CafeWithTagsPhotosResponseDto;
 import com.cafes.cafes.services.CafeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,7 +32,7 @@ public class CafeController {
     }
 
     @GetMapping("/cafes/{id}")
-    public CafeWithTagsResponseDto getCafeById(@PathVariable Long id) {
+    public CafeWithTagsPhotosResponseDto getCafeById(@PathVariable Long id) {
         return cafeService.getCafeById(id);
     }
 

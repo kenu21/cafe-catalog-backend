@@ -1,14 +1,12 @@
 package com.cafes.cafes.dto;
 
-import com.cafes.cafes.entities.AddressEntity;
-import com.cafes.cafes.entities.TagEntity;
-
 import java.math.BigDecimal;
 import java.util.List;
 
-public record CafeWithTagsResponseDto(
+public record CafeWithTagsPhotosResponseDto(
         String name,
-        String photoLink,
+        PhotoDtoResponse mainPhoto,
+        List<PhotoDtoResponse> photos,
         Short priceRating,
         String openingHours,
         BigDecimal rating,

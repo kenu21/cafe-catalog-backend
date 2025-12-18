@@ -5,7 +5,7 @@ import com.cafes.cafes.entities.StreetEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", uses = { CityMapper.class })
+@Mapper(componentModel = "spring", uses = {CityMapper.class})
 public interface StreetMapper {
     @Mapping(source = "cityEntity", target = "cityDtoResponse")
     StreetDtoResponse toDto(StreetEntity streetEntity);
