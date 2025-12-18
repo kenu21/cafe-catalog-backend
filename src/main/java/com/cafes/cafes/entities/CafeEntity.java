@@ -1,6 +1,7 @@
 package com.cafes.cafes.entities;
 
 import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,8 +17,12 @@ public class CafeEntity {
     @Column(nullable = false, length = 255)
     private String name;
 
-    @Column(name = "photo_link", nullable = false, length = 255)
-    private String photoLink;
+    @OneToOne
+    @JoinColumn(name = "main_photo_id")
+    private PhotoEntity mainPhoto;
+
+    @OneToMany(mappedBy = "cafe")
+    private List<PhotoEntity> photos;
 
     @Column(name = "price_rating", nullable = false)
     private Short priceRating;
@@ -67,14 +72,6 @@ public class CafeEntity {
         this.name = name;
     }
 
-    public String getPhotoLink() {
-        return photoLink;
-    }
-
-    public void setPhotoLink(String photoLink) {
-        this.photoLink = photoLink;
-    }
-
     public Short getPriceRating() {
         return priceRating;
     }
@@ -121,5 +118,29 @@ public class CafeEntity {
 
     public void setTags(List<TagEntity> tags) {
         this.tags = tags;
+    }
+
+    public PhotoEntity getMainPhoto() {
+        return mainPhoto;
+    }
+
+    public void setMainPhoto(PhotoEntity mainPhoto) {
+        this.mainPhoto = mainPhoto;
+    }
+
+    public List<PhotoEntity> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<PhotoEntity> photos) {
+        this.photos = photos;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
