@@ -3,7 +3,7 @@ package com.cafes.cafes.dto;
 import java.math.BigDecimal;
 import java.util.List;
 
-public record CafeWithTagsPhotosResponseDto(
+public record CafeFullResponseDto(
         String name,
         PhotoDtoResponse mainPhoto,
         List<PhotoDtoResponse> photos,
@@ -12,6 +12,7 @@ public record CafeWithTagsPhotosResponseDto(
         BigDecimal rating,
         Integer votesCount,
         AddressDtoResponse addressDtoResponse,
-        List<TagDtoResponse> tags
+        List<TagDtoResponse> tags,
+        String description
 ) {
 }
