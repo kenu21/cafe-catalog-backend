@@ -1,7 +1,7 @@
 package com.cafes.cafes.mappers;
 
 import com.cafes.cafes.dto.CafeDtoResponse;
-import com.cafes.cafes.dto.CafeWithTagsPhotosResponseDto;
+import com.cafes.cafes.dto.CafeFullResponseDto;
 import com.cafes.cafes.entities.CafeEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,5 +12,5 @@ public interface CafeMapper {
     CafeDtoResponse toDto(CafeEntity cafe);
 
     @Mapping(source = "addressEntity", target = "addressDtoResponse")
-    CafeWithTagsPhotosResponseDto toWithTagsPhotoResponseDto(CafeEntity cafe);
+    CafeFullResponseDto toWithTagsPhotoResponseDto(CafeEntity cafe);
 }

@@ -56,6 +56,10 @@ public class CafeEntity {
     )
     private List<TagEntity> tags;
 
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private String description;
+
     public Long getId() {
         return id;
     }
@@ -142,5 +146,13 @@ public class CafeEntity {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
